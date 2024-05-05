@@ -74,36 +74,20 @@ class _HomeScreenState extends State<HomeScreen> {
                         const SizedBox(height: 8),
                         const Text(
                           'Good Morning',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: TextStyle(color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),
                         ),
                         Image.asset('assets/images/1.png'),
-                        const Center(
-                          child: Text(
-                            '21°C',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
+                        Center(
+                          child: Text('${state.weather.temperature}°C',
+                              style: const TextStyle(color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold)),
                         ),
-                        const Center(
-                          child: Text(
-                            'lighting',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 25,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
+                        Center(
+                          child: Text('${state.weather.weatherDescription}',
+                              style: const TextStyle(color: Colors.white, fontSize: 25, fontWeight: FontWeight.w500)),
                         ),
-                        const Center(
+                        Center(
                           child: Text(
-                            'Friday 16 - 09:41am',
+                            '',
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 16,
@@ -236,7 +220,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   );
                 } else {
-                  return Container();
+                  return Container(
+                      child: Center(
+                          child: Text(
+                    'hello $state',
+                    style: TextStyle(color: Colors.white),
+                  )));
                 }
               })
             ],

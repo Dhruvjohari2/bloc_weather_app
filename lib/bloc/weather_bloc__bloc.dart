@@ -12,7 +12,7 @@ class WeatherBlocBloc extends Bloc<WeatherBlocEvent, WeatherBlocState> {
       emit(WeatherBlocLoading());
       try {
 
-        WeatherFactory wf = WeatherFactory("AIzaSyAiF9-WrYyqYpk9uwf6T910197MLxghJVk", language: Language.ENGLISH);
+        WeatherFactory wf = WeatherFactory("API KEY", language: Language.ENGLISH);
 
         Weather weather = await wf.currentWeatherByLocation(
           event.position.latitude,
@@ -21,6 +21,7 @@ class WeatherBlocBloc extends Bloc<WeatherBlocEvent, WeatherBlocState> {
         debugPrint('weather $weather');
         emit(WeatherBlocSuccess(weather));
       } catch (e) {
+        debugPrint('$e');
         emit(WeatherBlocFailure());
       }
     });
