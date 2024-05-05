@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:whether_bloc/bloc/weather_bloc_state.dart';
 import 'package:whether_bloc/bloc/weather_bloc__bloc.dart';
 
@@ -24,7 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
         systemOverlayStyle: const SystemUiOverlayStyle(statusBarBrightness: Brightness.dark),
       ),
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(40, 1 * 2 * kToolbarHeight, 40, 30),
+        padding: const EdgeInsets.fromLTRB(20, 1 * 2 * kToolbarHeight, 20, 15),
         child: SizedBox(
           height: MediaQuery.of(context).size.height,
           child: Stack(
@@ -78,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         Image.asset('assets/images/1.png'),
                         Center(
-                          child: Text('${state.weather.temperature}°C',
+                          child: Text('${state.weather.temperature!.celsius!.round()}°C',
                               style: const TextStyle(color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold)),
                         ),
                         Center(
@@ -87,8 +88,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                         Center(
                           child: Text(
-                            '',
-                            style: TextStyle(
+                            DateFormat('EEEE dd •').add_jm().format(state.weather.date!),
+                            style: const TextStyle(
                               color: Colors.white,
                               fontSize: 16,
                               fontWeight: FontWeight.w300,
@@ -102,20 +103,20 @@ class _HomeScreenState extends State<HomeScreen> {
                               children: [
                                 Image.asset('assets/images/11.png', scale: 8),
                                 const SizedBox(width: 5),
-                                const Column(
+                                Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
+                                    const Text(
                                       'SunRise ',
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.w300,
                                       ),
                                     ),
-                                    SizedBox(width: 3),
+                                    const SizedBox(width: 3),
                                     Text(
-                                      '5:34am ',
-                                      style: TextStyle(
+                                      DateFormat().add_jm().format(state.weather.sunrise!),
+                                      style: const TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.w300,
                                       ),
@@ -129,20 +130,20 @@ class _HomeScreenState extends State<HomeScreen> {
                               children: [
                                 Image.asset('assets/images/12.png', scale: 8),
                                 const SizedBox(width: 5),
-                                const Column(
+                                Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                      'SunRise ',
+                                    const Text(
+                                      'SunSet ',
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.w300,
                                       ),
                                     ),
-                                    SizedBox(width: 3),
+                                    const SizedBox(width: 3),
                                     Text(
-                                      '5:34am ',
-                                      style: TextStyle(
+                                      DateFormat().add_jm().format(state.weather.sunset!),
+                                      style: const TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.w300,
                                       ),
@@ -165,20 +166,20 @@ class _HomeScreenState extends State<HomeScreen> {
                               children: [
                                 Image.asset('assets/images/13.png', scale: 8),
                                 const SizedBox(width: 5),
-                                const Column(
+                                Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
+                                    const Text(
                                       'Temp Max ',
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.w300,
                                       ),
                                     ),
-                                    SizedBox(width: 3),
+                                    const SizedBox(width: 3),
                                     Text(
-                                      '5:34am ',
-                                      style: TextStyle(
+                                     '${state.weather.tempMax!.celsius!.round()}°C',
+                                      style: const TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.w300,
                                       ),
@@ -192,20 +193,20 @@ class _HomeScreenState extends State<HomeScreen> {
                               children: [
                                 Image.asset('assets/images/14.png', scale: 8),
                                 const SizedBox(width: 5),
-                                const Column(
+                                Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
+                                    const Text(
                                       'Temp Min ',
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.w300,
                                       ),
                                     ),
-                                    SizedBox(width: 3),
+                                    const SizedBox(width: 3),
                                     Text(
-                                      '5:34am ',
-                                      style: TextStyle(
+                                      '${state.weather.tempMin!.celsius!.round()}°C',
+                                      style: const TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.w300,
                                       ),
@@ -224,7 +225,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Center(
                           child: Text(
                     'hello $state',
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                   )));
                 }
               })
